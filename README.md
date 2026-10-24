@@ -2,7 +2,7 @@
 
 A multi-persona pre-mortem skill for Claude. It runs Gary Klein's pre-mortem around a mixed table: the people in the room write by hand, sealed AI personas take the other seats, and a separate agent reads every point without knowing who wrote it. The output is a one-page view or a deck that ends with the decisions still to be taken, never with a verdict.
 
-Current version: **v0.7.1** (2026-10-24). Draft, used in nine runs; two features not yet tested (see [Limits](#limits)).
+Current version: **v0.7.1** (2026-10-24). Draft, used in nine runs; two features not yet tested (see [Limits](#limits)). To install it, see [How to install](#how-to-install).
 
 ## The problem it addresses
 
@@ -39,11 +39,60 @@ The design rules (go to the extremes, every writer alone, split never mirror, pe
 | Insider | The same run twice, role-only cards against the user's portraits of real people, and the difference |
 | DD | Inside an acquisition due diligence; a fixed cast of seven writing on both sides |
 
-## Install
+## How to install
 
-Copy the `pre-mortem` folder into your skills directory (for Claude Code, `~/.claude/skills/`), or zip the folder and upload it as a custom skill. Invoke it with `/pre-mortem` or ask for a pre-mortem of a plan.
+The skill is the [`pre-mortem`](pre-mortem/) folder: one `SKILL.md`, nothing else. The rest of the repository is documentation. Install it in the Claude app, in Claude Code, or in both.
 
-The surface must offer subagents (without them the panel is not independent, and every output says so), code execution for the draws, and image reading for photographed sheets. The panel and the synthesis run on the middle model tier or above; every output names its models.
+### In the Claude app (web and desktop)
+
+Needs a Pro, Max, Team or Enterprise plan, with **code execution and file creation** turned on. On Team and Enterprise, an owner may first have to enable skills and code execution in Admin settings > Capabilities.
+
+1. Download the repository: on GitHub, **Code > Download ZIP**, then unzip it.
+2. Zip the `pre-mortem` folder itself, so that the ZIP contains the folder and the folder contains `SKILL.md`. On Windows: right-click the folder > Send to > Compressed (zipped) folder. On macOS: right-click > Compress. In a terminal: `zip -r pre-mortem.zip pre-mortem`.
+3. In Claude, open **Settings > Capabilities**, scroll to **Skills**, click **Upload skill** and select the ZIP.
+4. Check that the skill's toggle is on.
+
+The skill is private to your account. Team and Enterprise owners can provision it for the whole organisation.
+
+### In Claude Code
+
+Copy the folder into your personal skills directory, so it is available in every project:
+
+```bash
+git clone https://github.com/guillaumesimler/pre-mortem.git
+mkdir -p ~/.claude/skills
+cp -r pre-mortem/pre-mortem ~/.claude/skills/
+```
+
+On Windows (PowerShell):
+
+```powershell
+git clone https://github.com/guillaumesimler/pre-mortem.git
+New-Item -ItemType Directory -Force "$HOME\.claude\skills" | Out-Null
+Copy-Item -Recurse pre-mortem\pre-mortem "$HOME\.claude\skills\"
+```
+
+To make it available in one repository only, copy the folder into that repository's `.claude/skills/` instead and commit it.
+
+### Run it
+
+- **Claude Code:** type `/pre-mortem`, optionally followed by the plan and options, for example `/pre-mortem people=2 horizon=12 months`. The options are listed under *Invocation* in [SKILL.md](pre-mortem/SKILL.md).
+- **Claude app:** attach or paste the plan and ask for a pre-mortem ("run a pre-mortem on this plan"). Claude loads the skill from its description; naming it ("use the pre-mortem skill") makes it explicit.
+
+The run stops at three checkpoints (the brief, the cast, your transcribed input) and asks one question at each. People writing by hand need paper and a phone camera, or a voice recorder.
+
+### What the surface must offer
+
+- **Subagents**, so that every persona writes in its own context. Claude Code has them. Where a surface has none, the skill says so before starting and offers to run anyway, with every output marked *panel not independent*.
+- **Code execution**, for the seat and side draws and the blind shuffle. Without it, the skill asks you to toss a coin and records a manual draw.
+- **Image reading**, for photographed sheets. Otherwise people type their points.
+- **A capable model.** The panel and the synthesis run on the middle model tier or above; every output names its models.
+
+### Update or remove
+
+To update, replace the folder (Claude Code) or delete the skill and upload the new ZIP (Claude app). To remove it, delete `~/.claude/skills/pre-mortem` or the skill in Settings > Capabilities.
+
+Sources: [Using skills in Claude](https://support.claude.com/en/articles/12512180-using-skills-in-claude) · [Skills in Claude Code](https://code.claude.com/docs/en/skills).
 
 ## How it was built: a series of experiments
 
