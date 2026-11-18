@@ -2,7 +2,7 @@
 
 A multi-persona pre-mortem skill for Claude. It runs Gary Klein's pre-mortem around a mixed table: the people in the room write by hand, sealed AI personas take the other seats, and a separate agent reads every point without knowing who wrote it. The output is a one-page view or a deck that ends with the decisions still to be taken, never with a verdict.
 
-Current version: **v0.7.1** (2026-10-24). Draft, used in nine runs; two features not yet tested (see [Limits](#limits)). To install it, see [How to install](#how-to-install).
+Current version: **v0.7.2** (2026-11-18). Draft, used in nine runs; two features not yet tested (see [Limits](#limits)). To install it, see [How to install](#how-to-install).
 
 ## The problem it addresses
 
@@ -112,6 +112,7 @@ Every version came from a run that changed one variable and was checked against 
 | v0.6.0 | Outcome through mechanism; the decision check; recordings may feed the brief; specialist claims outside the brief; thin-brief share computed; personal plans; one question per checkpoint | Runs 4 to 7 |
 | v0.7.0 | Models named in every output, with a floor; role-only cards by default for real people; [ASSUMED] limited to decision-date facts | Run 8, the skill on itself, on three model tiers |
 | v0.7.1 | At least one persona on every side, however many people write; teams on one side never compare sheets | The argument for mixed groups |
+| v0.7.2 | Someone else's purchase: dated at signing, judged at 60 months, cards adapt by role | A third-party DD |
 
 The full history is in [CHANGELOG.md](CHANGELOG.md). The text of versions v0.2 to v0.4.1 is in [versions/](versions/); the text of v0.4.2 to v0.7.0 was not kept.
 

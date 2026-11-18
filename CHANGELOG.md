@@ -2,9 +2,9 @@
 
 Each version came from a run or a design session; the cause is given with the change. Run outputs are private and not published.
 
-## Unreleased (account copy, synced 2026-11-18)
+## v0.7.2 (2026-11-18)
 - Someone else's purchase: when the decision tested is a third party's, the decision date is the signing and the outcome date 60 months after it; the cards adapt by role at the checkpoint, never by dropping one; invented facts about an identifiable person's private finances, health or family are cut before anything is filed.
-- Cause: a third-party DD, November 2026. Written on the claude.ai account copy and not versioned there; the status line still reads v0.7.1.
+- Cause: a third-party DD, November 2026. Written on the claude.ai account copy first, released as v0.7.2.
 
 ## v0.7.1 (2026-10-24)
 - At least one persona on every side, however many people or teams write: the seats per side rise rather than the panel dropping out. The panel's value is that it says what the room does not; more human writers, sharing one culture and one boss, do not replace that.
